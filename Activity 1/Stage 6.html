@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>UN Goals Step 5</title>
+  <title>UN Goals Step 6</title>
 
 <style>
   body {
@@ -47,6 +47,7 @@
     background-color: DodgerBlue;
     align-content: center;    
     justify-content: center;
+    margin-top: 200px;
   }
   .flex-container > div {
     background-color: #f1f1f1;
@@ -60,13 +61,29 @@
     margin-right: auto;
     width: 100%;
   }
+
+  .topbar {
+    overflow-color:white;
+    background-color:white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+  }
+
 </style>
 
 
 </head>
 <body>
 
-
+<divclass = "topbar">
+  <picture>
+    <source media="(min-width: 940px)" srcset="images/E_SDG_logo_No UN Emblem_horizontal_rgb.png">
+    <img class = "center" src="images/E_SDG_logo_No UN Emblem_square_rgb.png" alt="Flowers" style="width:auto;">
+  </picture>
+</div>
 
 <div class = "flex-container">
   <div class="flip-box">
@@ -286,5 +303,11 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  
+</script>
+
+
 </body>
 </html>

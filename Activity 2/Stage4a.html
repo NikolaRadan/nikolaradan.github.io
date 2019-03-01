@@ -16,6 +16,13 @@ var staticUrl = 'https://raw.githubusercontent.com/NikolaRadan/nikolaradan.githu
 
 $.getJSON(staticUrl, function(data) {
         console.log(data)
+        console.log(data.fact[1].dims.COUNTRY);
+        console.log(data.fact[1].dims.GHO);
+        console.log(data.fact[1].dims.YEAR);
+ 		console.log(data.fact[31].dims.COUNTRY);
+        console.log(data.fact[31].dims.GHO);
+        console.log(data.fact[31].dims.YEAR);
+
     });
 </script>
 

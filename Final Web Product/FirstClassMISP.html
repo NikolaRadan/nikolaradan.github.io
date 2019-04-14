@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html>
+<body style="background-color:#ecffe6;">
+
+
+
+<head>
+	<title></title>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+
+
+
+    body, html {
+      height: 100%;
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .flip-box {
+      background-color: transparent;
+      width: 300px;
+      height: 200px;
+      border: 1px solid #f1f1f1;
+      perspective: 1000px;
+    }
+
+    .flip-box-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+    }
+
+    .flip-box:hover .flip-box-inner {
+      transform: rotateY(180deg);
+    }
+
+    .flip-box-front, .flip-box-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+    }
+
+    .flip-box-front {
+      background-color: #bbb;
+      color: black;
+    }
+
+    .flip-box-back {
+      background-color: dodgerblue;
+      color: white;
+      transform: rotateY(180deg);
+    }
+
+
+
+    .flex-container {
+        display: flex;
+        flex-wrap: wrap;
+        background-color: DodgerBlue;
+        align-content: center;    
+        justify-content: center;
+        margin-top: 200px;
+      }
+      .flex-container > div {
+        background-color: #f1f1f1;
+        margin: 10px;
+        padding: 5px;
+        font-size: 30px;
+      }
+
+    .overlay {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      background-color: rgb(0,0,0);
+      background-color: rgba(0,0,0, 0.9);
+      overflow-x: hidden;
+      transition: 0.5s;
+    }
+
+    .overlay-content {
+      position: relative;
+      top: 25%;
+      width: 100%;
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .overlay a {
+      padding: 8px;
+      text-decoration: none;
+      font-size: 36px;
+      color: #818181;
+      display: block;
+      transition: 0.3s;
+    }
+
+    .overlay a:hover, .overlay a:focus {
+      color: #f1f1f1;
+    }
+
+    .overlay .closebtn {
+      position: absolute;
+      top: 20px;
+      right: 45px;
+      font-size: 60px;
+    }
+
+    @media screen and (max-height: 450px) {
+      .overlay a {font-size: 20px}
+      .overlay .closebtn {
+      font-size: 40px;
+      top: 15px;
+      right: 35px;
+      }
+    }
+
+    .header {
+      padding: 10px 16px;
+      background: #e6e600;
+      color: #f1f1f1;
+    }
+
+    .topnav {
+      background-color: #333;
+      overflow: hidden;
+    }
+
+    /* Style the links inside the navigation bar */
+    .topnav a {
+      float: left;
+      color: #f2f2f2;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: 17px;
+    }
+
+    /* Change the color of links on hover */
+    .topnav a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+
+    /* Add a color to the active/current link */
+    .topnav a.active {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    .main {
+      margin-left: 160px; /* Same as the width of the sidenav */
+      font-size: 24px; /* Increased text to enable scrolling */
+      padding: 0px 10px;
+      background-color: #0F188E;
+    }
+
+    .hero-image {
+      background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("Goal7.png");
+      height: 50%;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      position: relative;
+    }
+
+    .hero-text {
+      text-align: center;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+    }
+
+    .hero-text button {
+      border: none;
+      outline: 0;
+      display: inline-block;
+      padding: 10px 25px;
+      color: black;
+      background-color: #ddd;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .hero-text button:hover {
+      background-color: #555;
+      color: white;
+    }
+
+    .flip-box {
+      background-color: transparent;
+      width: 300px;
+      height: 200px;
+      border: 1px solid #f1f1f1;
+      perspective: 1000px;
+      padding: 10px;
+    }
+
+    .flip-box-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+    }
+
+    .flip-box:hover .flip-box-inner {
+      transform: rotateX(180deg);
+    }
+
+    .flip-box-front, .flip-box-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+    }
+
+    .flip-box-front {
+      background-color: #bbb;
+      color: black;
+    }
+
+    .flip-box-back {
+      background-color: black;
+      color: white;
+      transform: rotateX(180deg);
+    }
+
+    .sidebar {
+      float: left;
+      background-color: dodgerblue; 
+      width: 320px; 
+      height: 890px;
+    }
+
+    p.indent{padding-left: 1.8em }
+
+    #section1 {
+      min-height:100px;
+      background-color: dodgerblue;
+      font-size: 20px;
+      font-family: 'Playfair Display', serif;
+      font-color: #4CAF50;
+
+
+    }
+     #section2{
+      min-height: 15px;
+      background-color: white;
+      font-size: 20px;
+      font-family: 'Playfair Display', serif;
+    }
+
+     #section3{
+      min-height:100px;
+      background-color: dodgerblue;
+      font-size: 20px;
+      font-family: 'Playfair Display', serif;
+    }
+
+     #section4{
+      min-height:15px;
+      background-color: white;
+      font-size: 20px;
+      font-family: 'Playfair Display', serif;
+    }
+    #section5{
+      min-height:100px;
+      background-color: dodgerblue;
+      font-size: 20px;
+      font-family: 'Playfair Display', serif;
+    }
+
+     #section6{
+      min-height:15px;
+      background-color: white;
+      font-size: 20px;
+      font-family: 'Playfair Display', serif;
+    }
+
+    #section7{
+      min-height:100px;
+      background-color: dodgerblue;
+      font-size: 20px;
+      font-family: 'Playfair Display', serif;
+    }
+
+    #section8{
+      min-height:100px;
+      background-color: white;
+      font-size: 20px;
+      font-family: 'Playfair Display', serif;
+    }
+
+     .button {
+         background-color: yellow;
+         border: none;
+         color: black;
+         padding: 20px 34px;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 20px;
+         margin: 4px 2px;
+         cursor: pointer;
+         }
+
+  </style>
+</head>
+<body>
+    <div class="topnav">
+      <a class="active" href="#home">Home</a>
+    </div>
+
+    <div class="hero-image">
+      <div class="hero-text">
+        <h1>UN Goal 7</h1>
+        <p>Affordable and Clean Energy</p>
+        <button>Donate to the Cause</button>
+      </div>
+    </div>
+
+
+
+
+
+
+
+    <div id="myNav" class="overlay">
+    	<style> </style>
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <div class="overlay-content">
+        <a href="#">This is my Goal 7 Site</a>
+        <a href="#">1. Click Everything</a>
+        <a href="#">2. Read Everything</a>
+        <a href="#">3. Check out the UN Websites</a>
+      </div>
+    </div>
+
+    <div class="header" id="myHeader">
+    	<h2>Questions and Statistics </h2>
+    </div>
+
+    <div>
+    <span style="font-size:30px;cursor:pointer: background-color: dodgerblue;" onclick="openNav()">&#9776; How to Use my Website</span>
+    </div>
+    <div class = "sidebar">
+  
+      <div class="flip-box">
+        <div class="flip-box-inner">
+          <div class="flip-box-front">
+            <img src="Activity Images/F.jpg">
+          </div>
+          <div class="flip-box-back">
+            <h2>Millions of acres of Land are lost every year due to deforestation</h2>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-box">
+        <div class="flip-box-inner">
+          <div class="flip-box-front">
+            <img src="Activity Images/KK.png">
+          </div>
+          <div class="flip-box-back">
+            <h2>Solar energy is one of the leading sources of clean evergy</h2>
+          </div>
+        </div>
+      </div>
+
+            <div class="flip-box">
+        <div class="flip-box-inner">
+          <div class="flip-box-front">
+            <img src="Activity Images/TT.png">
+          </div>
+          <div class="flip-box-back">
+            <h2>LED Lightbulbs are now one of the more green solutions for modern hosueholds</h2>
+          </div>
+        </div>
+      </div>
+
+            <div class="flip-box">
+        <div class="flip-box-inner">
+          <div class="flip-box-front">
+            <img src="Activity Images/YY.png">
+          </div>
+          <div class="flip-box-back">
+            <h2>Solar energy is on of the most valued versions of clean energy. New technological advances are leading solar energy to be generated directly from households</h2>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  
+    <div class = "Right">
+
+      <div id = "section1">
+        <br>
+        <font color="white"> Deforeststion is a lead cause of CO2 emissions as the less trees/vegitation there is, the less oxygen is emmited into the atmosphere. In 2010 brazil was losing an average of 104,000 cubic meters of trees/day, Egypt: 32,400 Cubic Meters/Day, Iraq: 28,000 Cubic Meters/Day. The ecosystems become barren and are no longer habitable for humans or animals. The trees that are chopped are either used for energy or sold. The energy that is generated is as clean as a coal/natural gas genrator(about 1900g CO2 for each 1000g of wood burnt).</font> <br>
+        <a href="http://data.un.org/Data.aspx?d=ENV&f=variableID%3a84" class="button">Deforestation Data</a> 
+      </div>
+    </div>
+
+    <div class = "Right">
+
+      <div id = "section2">
+         
+      </div>
+    </div>
+
+
+    <div class = "Right">
+
+      <div id = "section3">
+        <br>
+        <font color="white"> Wind Generators are one of the leading electricity generators in Canada producing 30,766 Kilowatt-hour, millions in 2016. Daily, some genartors in south ontario can produce tens of thousands watts and hour. If there is a windy day on the forecast the wind generators are turned on and the fossil fuel factories are turned off as they are not needed for the day. Because wind genaration does not need manual work, nor does it take energy to run it is less of a cost to run therefor lowering energy prices when they are in use, making them a clean and cheap energy source.</font> <br>
+        <a href="http://data.un.org/Data.aspx?d=EDATA&f=cmID%3aEW" class="button">Wind Generation Data</a> <br>
+      </div>
+    </div>
+
+    <div class = "Right">
+
+      <div id = "section4">
+         
+      </div>
+    </div>
+
+
+    <div class = "Right">
+
+      <div id = "section5">
+        <br>
+        <font color="white"> Energy Prices have some of the most crucial effects on the economy around the world. People have recognized patterns in energy prices that help us understand what electricity genrator to put online. For example: during the day the energy prices rise to the demand of electricity when during the night demand is low when people are sleeping and prices drop. On a sunny or windy day the enrgy prices can drop as well because of how cheap it is to genrate electricity(solar and wind). With clean energy sources running the energy trading economy has an amzing day, check prices with the link below!</font> <br>
+        <a href="https://www.fxempire.com/markets" class="button">Energy Prices Real Time: Search</a>  <br>
+      </div>
+    </div>
+
+    <div class = "Right">
+
+      <div id = "section6">
+         
+      </div>
+    </div>
+
+
+    <div class = "Right">
+
+      <div id = "section7">
+        <br>
+        <font color="white"> Solar energy genration follows the same protocals as wind generation. The maximum private solar generation can reach up to 2000 Megawatts/hour, though company maximum capacity 240 Megawatts/hour in Ontario alone! On record solar energy can produce up to 1/8 of all energy in Ontario hourly or daily. For example: on a sunny day in the summer demand is higher but becuasue of the hight solar demand less fossil fuels are being used lowering prices and pollution genrated. Check out how otehr countries rank up with their solar generation below!</font> <br>
+        <a href="http://data.un.org/Data.aspx?d=EDATA&f=cmID%3aES" class="button">Solar Generation Data</a>  <br>
+      </div>
+    </div>
+
+
+
+
+    <div class="header" id="myHeader">
+      <h2>Questions and Statistics </h2>
+    </div>
+
+
+
+
+     <div id = "section8">
+        <br>
+        <a href="https://www.un.org/sustainabledevelopment/poverty/" class="button">UN Goal 1</a>
+        <a href="https://www.un.org/sustainabledevelopment/hunger/" class="button">UN Goal 2</a>
+        <a href="https://www.un.org/sustainabledevelopment/health/" class="button">UN Goal 3</a>
+        <a href="https://www.un.org/sustainabledevelopment/education/" class="button">UN Goal 4</a> 
+        <a href="https://www.un.org/sustainabledevelopment/gender-equality/" class="button">UN Goal 5</a>
+        <a href="https://www.un.org/sustainabledevelopment/water-and-sanitation/" class="button">UN Goal 6</a>
+        <a href="https://www.un.org/sustainabledevelopment/energy/" class="button">UN Goal 7</a>
+        <a href="https://www.un.org/sustainabledevelopment/economic-growth/" class="button">UN Goal 8</a>
+        <a href="https://www.un.org/sustainabledevelopment/infrastructure-industrialization/" class="button">UN Goal 9</a>
+        <a href="https://www.un.org/sustainabledevelopment/inequality/" class="button">UN Goal 10</a>
+        <a href="https://www.un.org/sustainabledevelopment/cities/" class="button">UN Goal 11</a>
+        <a href="https://www.un.org/sustainabledevelopment/sustainable-consumption-production/" class="button">UN Goal 12</a> 
+        <a href="https://www.un.org/sustainabledevelopment/climate-change-2/" class="button">UN Goal 13</a>
+        <a href="https://www.un.org/sustainabledevelopment/oceans/" class="button">UN Goal 14</a>
+        <a href="https://www.un.org/sustainabledevelopment/biodiversity/" class="button">UN Goal 15</a>
+        <a href="https://www.un.org/sustainabledevelopment/peace-justice/" class="button">UN Goal 16</a>
+        <a href="https://www.un.org/sustainabledevelopment/globalpartnerships/" class="button">UN Goal 17</a>
+         <br>
+      </div>
+    
+
+
+  
+<script>
+
+
+function openNav() {
+  document.getElementById("myNav").style.width = "100%";
+}
+
+function closeNav() {
+  document.getElementById("myNav").style.width = "0%";
+}
+
+
+</script>
+</body>
+</html>
